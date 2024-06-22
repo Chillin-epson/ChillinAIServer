@@ -11,10 +11,10 @@ motion =  APIRouter()
 @motion.post("/") 
 async def get_drawing_with_motion( 
     image: UploadFile = File(...), 
-    motion: str = Form(...) 
+    motionType: str = Form(...) 
     ): 
     img = await img_to_np(image) 
-    convert_to_GIF(img=img, char_anno_dir="output", motion_type=motion) 
+    convert_to_GIF(img=img, char_anno_dir="output", motion_type=motionType) 
     gif_path = Path("output/video.gif") 
     if not gif_path.is_file(): 
         return {"error": "gif not found"} 
